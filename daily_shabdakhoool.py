@@ -316,7 +316,7 @@ def colortext(text,color):
     st.markdown(mtext,unsafe_allow_html=True )
 
 def details():
-    whitetext("जवळजवळ 4000 शब्दांच्या यादीतून एक शब्द विनाक्रम निवडला जातो. त्याचा घाट (स्वराकार आणि\
+    whitetext("रोज (UTC मध्यरात्री) एक तीन अक्षरी शब्द निवडला जातो. त्याचा घाट (स्वराकार आणि\
         व्यंजनसंख्या) सांगितली जाते.")
     whitetext("उदाहरणार्थ: 'बछडा'चा स्वराकार अअआ आणि व्यंजनसंख्या १११.")
     whitetext("'अप्सरा'चे अअआ आणि ०२१.")
@@ -339,6 +339,7 @@ def details():
          का आणि क अर्धवट जुळतात म्हणून का ला मिळतो  %s. त ला देखिल मिळतो %s \
         कारण तो र् + त् मधील त शी जुळतो. शेवटच्या री ला मात्र त्याच र्त मधील र ला जुळूनही %s मिळतो \
         कारण र्त ला आधीच एक गुण बहाल झाला आहे (%s)." % (imunicode['G'], imunicode['B'], imunicode['Y'], imunicode['R'],imunicode['B'], imunicode['B'], imunicode['R'], imunicode['B']))
+    whitetext("[शब्दखूुळवरील लेख](https://ashishmahabal.github.io/%E0%A4%B6%E0%A4%AC%E0%A5%8D%E0%A4%A6%E0%A4%96%E0%A5%82%E0%A5%81%E0%A4%B3/)")
 
 def reveal():
     '''
@@ -478,6 +479,7 @@ def copyright():
     whitetext("Beta-testers: Chaitali Parashare, Rohit Gawande")
     whitetext("We do not collect any personal or location data.")
     whitetext("Contact: [email](mailto:mahabal.ashish@gmail.com)|[twitter](https://twitter.com/aschig)")
+    whitetext("[शब्दखूुळवरील लेख](https://ashishmahabal.github.io/%E0%A4%B6%E0%A4%AC%E0%A5%8D%E0%A4%A6%E0%A4%96%E0%A5%82%E0%A5%81%E0%A4%B3/)")
 
 # devnagari letter-set in unicode is assigned to the 0900-097F block (==2304-2431)
 # https://unicode.org/charts/PDF/U0900.pdf
