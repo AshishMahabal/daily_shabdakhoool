@@ -390,7 +390,7 @@ def getinput(secret,imunicode,onemore,depth):
                 modalstr = modalstr + ''.join([imunicode[k] for k in st.session_state['mylist'][i][1]]) + '\n'
             with col1: # शब्दखूुळ doesn't show properly everywhere
                 st.write("दवंडी पिटा")
-                toShare = "दैनिक शब्दखूुळ तिनाक्षरी\n#%d %s/∞\n\n%s\n%s" % (st.session_state['nthword'],get_mdigits(len(st.session_state['mylist'])-1),modalstr,purl)
+                toShare = "दैनिक शब्दखूुळ तिनाक्षरी\n#%d %s/∞\n\n%s\n[%s](%s)" % (st.session_state['nthword'],get_mdigits(len(st.session_state['mylist'])-1),modalstr,purl,purl)
                 st.code(toShare)
             myc2 = ''
 
