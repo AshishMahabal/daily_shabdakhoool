@@ -48,7 +48,7 @@ def def_value():
 n = 3
 pmode = 'd3y1'
 wlen = 3 # That is the length we currently use
-purl = 'http://url/opt=1'
+purl = 'https://tinyurl.com/dailyshabdakhoool'
 
 # 'ऱ' (r in तऱ्हा) is mapped to 'र' in blues2
 consonants = ['क', 'ख', 'ग', 'घ', 'ङ', 'च', 'छ', 'ज', 'झ', 'ञ', 'ट', 'ठ', 'ड', 'ढ', 'ण', 
