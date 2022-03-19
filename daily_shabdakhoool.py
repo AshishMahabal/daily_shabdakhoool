@@ -387,7 +387,7 @@ def getinput(secret,imunicode,onemore,depth):
         else:
             if st.session_state['balloons'] == 1: # This still causes some issues
                 if len(st.session_state['mylist'])==2:
-                    st.snow()
+                    st.balloons()
                 else:
                     st.balloons()
                 st.session_state['balloons'] = 0
