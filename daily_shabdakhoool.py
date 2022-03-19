@@ -45,6 +45,7 @@ def def_value():
     return uuid.uuid4().hex
 
 # A few Globals
+answer_threshold = 6
 n = 3
 pmode = 'd3y1'
 wlen = 3 # That is the length we currently use
@@ -376,13 +377,19 @@ def getinput(secret,imunicode,onemore,depth):
                             st.text('तुम्ही जिंकलात')
             
         if onemore: # If victory has not been achieved
+            if len(st.session_state['mylist'])> answer_threshold:
+                    if st.button('उत्तर',key=st.session_state['gcount']):
+                        reveal()
             col1, col2 = st.columns([20,10])
             with col1:
                 prompt = "स्वरक्रम `%s` व्यंजने `%s`" % (''.join(st.session_state['rsshape']),''.join(st.session_state['cshape']))
                 myc2 = st.text_input('','',key=st.session_state['gcount'],placeholder=prompt)
         else:
             if st.session_state['balloons'] == 1: # This still causes some issues
-                st.balloons()
+                if len(st.session_state['mylist'])==2:
+                    st.snow()
+                else:
+                    st.balloons()
                 st.session_state['balloons'] = 0
             col1, col2 = st.columns([12, 16])
             modalstr = ''
@@ -431,7 +438,8 @@ def write2firebase(sid,inlist):
         attemptdict[u'indict'] = inlist[m][2]
         setstr['attempts'].append(attemptdict)
     timenow = datetime.datetime.now(datetime.timezone.utc)
-    setstr[u'wintime'] = timenow
+    timenowstr = json.dumps(timenow,default=str)
+    setstr[u'wintime'] = timenowstr
     setstr[u'pmode'] = pmode    # daily_len3_year1
     setstr[u'nthday'] = st.session_state['nthword'] 
     doc_ref.set(setstr)
