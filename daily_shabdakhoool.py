@@ -438,8 +438,9 @@ def write2firebase(sid,inlist):
         attemptdict[u'indict'] = inlist[m][2]
         setstr['attempts'].append(attemptdict)
     timenow = datetime.datetime.now(datetime.timezone.utc)
-    timenowstr = json.dumps(timenow,default=str)
-    setstr[u'wintime'] = timenowstr
+    setstr[u'wintime'] = timenow
+    # timenowstr = json.dumps(timenow,default=str)
+    # setstr[u'wintime'] = timenowstr
     setstr[u'pmode'] = pmode    # daily_len3_year1
     setstr[u'nthday'] = st.session_state['nthword'] 
     doc_ref.set(setstr)
