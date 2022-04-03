@@ -49,7 +49,8 @@ answer_threshold = 6
 n = 3
 pmode = 'd3y1'
 wlen = 3 # That is the length we currently use
-purl = 'https://tinyurl.com/dailyshabdakhoool'
+purl = 'https://www.shabdakhoool.games/'
+#purl = 'https://tinyurl.com/dailyshabdakhoool'
 
 # 'ऱ' (r in तऱ्हा) is mapped to 'र' in blues2
 consonants = ['क', 'ख', 'ग', 'घ', 'ङ', 'च', 'छ', 'ज', 'झ', 'ञ', 'ट', 'ठ', 'ड', 'ढ', 'ण', 
@@ -386,7 +387,7 @@ def getinput(secret,imunicode,onemore,depth):
                 myc2 = st.text_input('','',key=st.session_state['gcount'],placeholder=prompt)
         else:
             if st.session_state['balloons'] == 1: # This still causes some issues
-                if len(st.session_state['mylist'])==2:
+                if len(st.session_state['mylist'])==2 or len(st.session_state['mylist'])==3:
                     st.snow()
                 else:
                     st.balloons()
@@ -397,7 +398,7 @@ def getinput(secret,imunicode,onemore,depth):
                 modalstr = modalstr + ''.join([imunicode[k] for k in st.session_state['mylist'][i][1]]) + '\n'
             #with col1: # शब्दखूुळ doesn't show properly everywhere
             st.write("दवंडी पिटा")
-            toShare = "दैनिक शब्दखूुळ तिनाक्षरी\n#%d %s/∞\n\n%s\n%s" % (st.session_state['nthword'],get_mdigits(len(st.session_state['mylist'])-1),modalstr,purl)
+            toShare = "दैनिक शब्दखूुळ तिनाक्षरी\n#%d %s/∞ (%s, %s)\n\n%s\n%s" % (st.session_state['nthword'],get_mdigits(len(st.session_state['mylist'])-1),''.join(st.session_state['rsshape']),''.join(st.session_state['cshape']),modalstr,purl)
             st.code(toShare)
             myc2 = ''
 
@@ -586,7 +587,7 @@ def main():
         st.session_state['sessionid'] = uuid.uuid4().hex
         words = open(secret_wordfile,'r').read().split('\n')
         #nthword = random.randrange(len(words))
-        nthword = datetime.datetime.now().timetuple().tm_yday  # returns 1 for January 1st, 58 for 2/27
+        nthword = datetime.datetime.utcnow().timetuple().tm_yday  # returns 1 for January 1st, 58 for 2/27
         secret = words[nthword]
         if nthword < 58:
             nthword += 365
@@ -597,13 +598,13 @@ def main():
         st.session_state['cshape'] = consonant_structure(secret)
     secret = st.session_state['secret']
 
-    col2, col1 = st.columns(2)
+    col1, col2 = st.columns(2)
     with col1:
+        st.markdown("शोधा: स्वरक्रम `%s` व्यंजने `%s` (#%d)" % (''.join(st.session_state['rsshape']),''.join(st.session_state['cshape']),st.session_state['nthword']))
+    with col2:
         if st.button('?'):
             with modal.container():
                 tldr()
-    with col2:
-        st.markdown("शोधा: स्वरक्रम `%s` व्यंजने `%s`" % (''.join(st.session_state['rsshape']),''.join(st.session_state['cshape'])))
 
     depth = 0
     getinput(secret,imunicode,1,depth)
